@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "us-west-1b"
+  region     = "us-west-1"
   access_key = "AKIAQ23IJFLDUKBNSRWM"
   secret_key = "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"
 }
@@ -37,7 +37,7 @@ resource "aws_route_table" "prod-route-table" {
 resource "aws_subnet" "subnet-1" {
   vpc_id     = aws_vpc.prod-vpc.id
   cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-2b"
+  availability_zone = "us-west-1b"
   tags = {
     Name = "prod-subnet"
 }
@@ -72,13 +72,13 @@ egress {
     Name = "allow_all"
  }
 }
-
+/*
 
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.ansible.id
   allocation_id = "eipalloc-02e7a0ec93180e54c"
 }
-/*
+
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.jenkins.id
   allocation_id = ""
@@ -92,11 +92,11 @@ resource "aws_eip_association" "eip_assoc" {
 */
 
 resource "aws_instance" "jenkins" {
-  ami           = "ami-0568773882d492fc8"
+  ami           = "ami-0f5e8a042c8bfcd5e"
   instance_type = "t2.medium"
   #availability_zone ="us-east-2b"
   associate_public_ip_address= true
-  key_name = "winkey" 
+  key_name = "king" 
   subnet_id = aws_subnet.subnet-1.id 
   private_ip = "10.0.1.51"
   root_block_device   {
@@ -141,11 +141,11 @@ resource "aws_instance" "stagging" {
 } */
 
 resource "aws_instance" "ansible" {
-  ami           = "ami-0568773882d492fc8"
+  ami           = "ami-0f5e8a042c8bfcd5e"
   instance_type = "t2.large"
   associate_public_ip_address= true
   #availability_zone ="us-east-2b"
-  key_name = "winkey" 
+  key_name = "king" 
   private_ip = "10.0.1.50"
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
@@ -163,12 +163,12 @@ resource "aws_instance" "ansible" {
 }
 
 resource "aws_instance" "k8s-master" {
-  ami           = "ami-0568773882d492fc8"
+  ami           = "ami-0f5e8a042c8bfcd5e"
   instance_type = "t2.medium"
   associate_public_ip_address= true
   private_ip = "10.0.1.52"
   #availability_zone ="us-east-2b"
-  key_name = "winkey" 
+  key_name = "king" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"
@@ -185,12 +185,12 @@ resource "aws_instance" "k8s-master" {
 }
 
 resource "aws_instance" "workernode1" {
-  ami           = "ami-0568773882d492fc8"
-  instance_type = "t2.micro"
+  ami           = "ami-0f5e8a042c8bfcd5e"
+  instance_type = "t2.large"
   associate_public_ip_address= true
   #availability_zone ="us-east-2b"
   private_ip = "10.0.1.53"
-  key_name = "winkey" 
+  key_name = "king" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"
@@ -207,12 +207,12 @@ resource "aws_instance" "workernode1" {
 }
 
 resource "aws_instance" "workernode2" {
-  ami           = "ami-0568773882d492fc8"
-  instance_type = "t2.micro"
+  ami           = "ami-0f5e8a042c8bfcd5e"
+  instance_type = "t2.large"
   associate_public_ip_address= true
   #availability_zone ="us-east-2b"
   private_ip = "10.0.1.54"
-  key_name = "winkey" 
+  key_name = "king" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"

@@ -96,7 +96,7 @@ resource "aws_instance" "jenkins" {
   instance_type = "t2.medium"
   #availability_zone ="us-west-1b"
   associate_public_ip_address= true
-  key_name = "organ" 
+  key_name = "ncali" 
   subnet_id = aws_subnet.subnet-1.id 
   private_ip = "10.0.1.51"
   root_block_device   {
@@ -122,7 +122,7 @@ resource "aws_instance" "stagging" {
   instance_type = "t2.xlarge"
   associate_public_ip_address= true
   #availability_zone ="us-west-1b"
-  key_name = "organ" 
+  key_name = "ncali" 
   subnet_id = aws_subnet.subnet-1.id 
   private_ip = "10.0.1.55"
   root_block_device   {
@@ -145,7 +145,7 @@ resource "aws_instance" "ansible" {
   instance_type = "t2.large"
   associate_public_ip_address= true
   #availability_zone ="us-east-1b"
-  key_name = "organ" 
+  key_name = "ncali" 
   private_ip = "10.0.1.50"
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
@@ -168,7 +168,7 @@ resource "aws_instance" "k8s-master" {
   associate_public_ip_address= true
   private_ip = "10.0.1.52"
   #availability_zone ="us-west-1b"
-  key_name = "organ" 
+  key_name = "ncali" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"
@@ -190,7 +190,7 @@ resource "aws_instance" "workernode1" {
   associate_public_ip_address= true
   #availability_zone ="us-west-1b"
   private_ip = "10.0.1.53"
-  key_name = "organ" 
+  key_name = "ncali" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"
@@ -212,7 +212,7 @@ resource "aws_instance" "workernode2" {
   associate_public_ip_address= true
   #availability_zone ="us-west-1b"
   private_ip = "10.0.1.54"
-  key_name = "organ" 
+  key_name = "ncali" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"

@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "us-east-2"
+  region     = "us-west-1"
   access_key = "AKIAQ23IJFLDZ5SJ3MA2"
   secret_key = "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"
 }
@@ -37,7 +37,7 @@ resource "aws_route_table" "prod-route-table" {
 resource "aws_subnet" "subnet-1" {
   vpc_id     = aws_vpc.prod-vpc.id
   cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-2c"
+  availability_zone = "us-west-1c"
   tags = {
     Name = "prod-subnet"
 }
@@ -92,11 +92,11 @@ resource "aws_eip_association" "eip_assoc" {
 */
 
 resource "aws_instance" "jenkins" {
-  ami           = "ami-0a606d8395a538502"
+  ami           = "ami-00d8a762cb0c50254"
   instance_type = "t2.medium"
-  #availability_zone ="us-east-2c"
+  #availability_zone ="us-west-1c"
   associate_public_ip_address= true
-  key_name = "ohio" 
+  key_name = "cali" 
   subnet_id = aws_subnet.subnet-1.id 
   private_ip = "10.0.1.51"
   root_block_device   {
@@ -118,11 +118,11 @@ resource "aws_instance" "jenkins" {
 
 /*
 resource "aws_instance" "stagging" {
-  ami           = "ami-0a606d8395a538502"
+  ami           = "ami-00d8a762cb0c50254"
   instance_type = "t2.xlarge"
   associate_public_ip_address= true
-  #availability_zone ="us-east-2c"
-  key_name = "ohio" 
+  #availability_zone ="us-west-1c"
+  key_name = "cali" 
   subnet_id = aws_subnet.subnet-1.id 
   private_ip = "10.0.1.55"
   root_block_device   {
@@ -141,11 +141,11 @@ resource "aws_instance" "stagging" {
 } */
 
 resource "aws_instance" "ansible" {
-  ami           = "ami-0a606d8395a538502"
+  ami           = "ami-00d8a762cb0c50254"
   instance_type = "t2.large"
   associate_public_ip_address= true
-  #availability_zone ="us-east-2c"
-  key_name = "ohio" 
+  #availability_zone ="us-west-1"
+  key_name = "cali" 
   private_ip = "10.0.1.50"
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
@@ -163,12 +163,12 @@ resource "aws_instance" "ansible" {
 }
 
 resource "aws_instance" "k8s-master" {
-  ami           = "ami-0a606d8395a538502"
+  ami           = "ami-00d8a762cb0c50254"
   instance_type = "t2.medium"
   associate_public_ip_address= true
   private_ip = "10.0.1.52"
-  #availability_zone ="us-east2c"
-  key_name = "ohio" 
+  #availability_zone ="us-west-1c"
+  key_name = "cali" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"
@@ -185,12 +185,12 @@ resource "aws_instance" "k8s-master" {
 }
 
 resource "aws_instance" "workernode1" {
-  ami           = "ami-0a606d8395a538502"
+  ami           = "ami-00d8a762cb0c50254"
   instance_type = "t2.large"
   associate_public_ip_address= true
-  #availability_zone ="us-east2c"
+  #availability_zone ="us-west-1c"
   private_ip = "10.0.1.53"
-  key_name = "ohio" 
+  key_name = "cali" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"
@@ -207,12 +207,12 @@ resource "aws_instance" "workernode1" {
 }
 
 resource "aws_instance" "workernode2" {
-  ami           = "ami-0a606d8395a538502"
+  ami           = "ami-00d8a762cb0c50254"
   instance_type = "t2.large"
   associate_public_ip_address= true
-  #availability_zone ="us-east2c"
+  #availability_zone ="us-west-1c"
   private_ip = "10.0.1.54"
-  key_name = "ohio" 
+  key_name = "cali" 
   subnet_id = aws_subnet.subnet-1.id 
   root_block_device   {
       volume_type = "gp2"
